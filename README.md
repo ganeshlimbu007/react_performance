@@ -54,6 +54,8 @@ The metric dots are colour-coded: 🟢 good · 🟡 needs improvement · 🔴 po
 | `/ssr` | **Server-Side Rendering** | `export const dynamic = 'force-dynamic'` | Timestamp changes on every reload |
 | `/ssg` | **Static Site Generation** | `export const dynamic = 'force-static'` | Timestamp frozen at build time |
 | `/isr` | **Incremental Static Regeneration** | `export const revalidate = 10` | Updates at most once per 10 s |
+| `/products` + `/products/[id]` | **Incremental Static Generation** | `generateStaticParams` + `dynamicParams` | IDs 1–3 prebuilt; IDs 4+ generated on first visit, then cached |
+| `/streaming` | **Streaming SSR** | independent `<Suspense>` boundaries | Shell paints instantly; widgets stream in separately |
 | `/server-component` | **React Server Components** | `async` server component + client island | Only the Like button ships JS |
 
 Run `npm run build` and watch the route summary — Next.js labels each route as

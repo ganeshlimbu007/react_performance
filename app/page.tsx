@@ -26,6 +26,18 @@ const TECHNIQUES = [
     badge: "revalidate = 10",
   },
   {
+    href: "/products",
+    title: "Incremental SSG — generateStaticParams",
+    desc: "IDs 1–3 are prebuilt; visiting /products/42 statically generates that page on-demand and caches it. True incremental static generation.",
+    badge: "generateStaticParams + dynamicParams",
+  },
+  {
+    href: "/streaming",
+    title: "Streaming SSR — Suspense",
+    desc: "The shell paints instantly while each <Suspense> boundary streams in independently as its async data resolves.",
+    badge: "<Suspense> streaming",
+  },
+  {
     href: "/server-component",
     title: "RSC — React Server Components",
     desc: "Async component that fetches & renders on the server, streaming zero JS for its data layer to the client.",

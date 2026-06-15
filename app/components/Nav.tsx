@@ -6,6 +6,8 @@ const LINKS = [
   { href: "/ssr", label: "SSR" },
   { href: "/ssg", label: "SSG" },
   { href: "/isr", label: "ISR" },
+  { href: "/products", label: "Incremental SSG" },
+  { href: "/streaming", label: "Streaming" },
   { href: "/server-component", label: "Server Component" },
   { href: "/vitals-lab", label: "Vitals Lab" },
 ];
