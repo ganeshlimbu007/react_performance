@@ -1,0 +1,313 @@
+:root {
+  --bg: #0b1020;
+  --panel: #131a2e;
+  --panel-2: #1b2440;
+  --text: #e8ecf5;
+  --muted: #9aa6c2;
+  --accent: #6ea8fe;
+  --good: #2ecc71;
+  --warn: #f1c40f;
+  --poor: #e74c3c;
+  --border: #273252;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+code {
+  background: var(--panel-2);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em;
+}
+
+button {
+  background: var(--accent);
+  color: #061229;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+button:hover {
+  filter: brightness(1.08);
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.5rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.nav .brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* ---------- Layout ---------- */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  margin: 0 0 0.5rem;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+/* ---------- Cards ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.card {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem;
+  color: var(--text);
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+.card h2 {
+  font-size: 1.05rem;
+  margin: 0.6rem 0 0.4rem;
+}
+.card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+.card-badge {
+  display: inline-block;
+  background: var(--panel-2);
+  color: var(--accent);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-family: ui-monospace, monospace;
+}
+
+.callout {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+}
+.callout h3 {
+  margin-top: 0;
+}
+
+/* ---------- Technique pages ---------- */
+.page h1 {
+  margin-bottom: 0.25rem;
+}
+.lead {
+  color: var(--muted);
+  margin-top: 0;
+}
+.render-info {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  background: var(--panel);
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+}
+.render-info.where-server {
+  border-left-color: #9b59b6;
+}
+.render-info.where-client {
+  border-left-color: #1abc9c;
+}
+.render-info.where-build {
+  border-left-color: #e67e22;
+}
+.ri-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+}
+.ri-key {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.ri-val.mono,
+.mono {
+  font-family: ui-monospace, monospace;
+}
+
+.data-box {
+  background: var(--panel-2);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+}
+.data-box .note {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.loading {
+  color: var(--warn);
+}
+
+.like-btn {
+  margin-top: 0.8rem;
+}
+
+/* ---------- Vitals Lab ---------- */
+.lab-section {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.2rem 0;
+  background: var(--panel);
+}
+.lab-section h2 {
+  margin-top: 0;
+}
+.lcp-hero {
+  margin-top: 1rem;
+  height: 320px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6ea8fe, #9b59b6);
+  color: #061229;
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+.cls-banner {
+  margin: 1rem 0;
+  background: var(--warn);
+  color: #061229;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.cls-anchor {
+  color: var(--muted);
+}
+
+/* ---------- Vitals dashboard ---------- */
+.vitals {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: 280px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+.vitals-toggle {
+  width: 100%;
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 0;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.vitals-body {
+  padding: 0.8rem 1rem 1rem;
+}
+.vitals-empty,
+.vitals-hint {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.vital-row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed var(--border);
+}
+.vital-name {
+  font-size: 0.9rem;
+}
+.vital-name .core {
+  margin-left: 0.4rem;
+  font-size: 0.62rem;
+  font-style: normal;
+  background: var(--accent);
+  color: #061229;
+  padding: 0.05rem 0.35rem;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+.vital-value {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.dot.good {
+  background: var(--good);
+}
+.dot\:needs-improvement,
+.dot.needs-improvement {
+  background: var(--warn);
+}
+.dot.poor {
+  background: var(--poor);
+}
