@@ -49,6 +49,12 @@ const TECHNIQUES = [
     desc: "Trigger LCP, CLS and INP on demand with controlled demos so you can see the dashboard react in real time.",
     badge: "LCP · CLS · INP",
   },
+  {
+    href: "/render-lab",
+    title: "Render Profiler Lab",
+    desc: "A CRM dashboard for practising the React DevTools Profiler — record interactions and diagnose why components re-render.",
+    badge: "React Profiler",
+  },
 ];
 
 export default function Home() {
