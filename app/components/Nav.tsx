@@ -10,6 +10,7 @@ const LINKS = [
   { href: "/streaming", label: "Streaming" },
   { href: "/server-component", label: "Server Component" },
   { href: "/vitals-lab", label: "Vitals Lab" },
+  { href: "/render-lab", label: "Render Lab" },
 ];
 
 export function Nav() {
