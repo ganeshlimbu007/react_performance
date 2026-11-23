@@ -781,3 +781,58 @@ button:hover {
     max-height: 45vh;
   }
 }
+
+/* ---------- Shapes lab ---------- */
+.sh-heavy {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-family: ui-monospace, monospace;
+}
+.sh-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+.sh-row {
+  padding: 0.2rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+.sh-row input {
+  width: 100%;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+.sh-chart {
+  margin-top: 1rem;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+}
+.sh-fallback {
+  color: var(--warn);
+}
+.sh-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.sh-cell {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-size: 0.88rem;
+}

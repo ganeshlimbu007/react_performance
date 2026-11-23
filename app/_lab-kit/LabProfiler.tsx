@@ -14,6 +14,8 @@ export type ProfilerStats = {
   lastActual: number;
   lastBase: number;
   lastPhase: string;
+  /** The most recent phases, newest last — so a "nested-update" is visible. */
+  recentPhases: string[];
 };
 
 const store = new Map<string, ProfilerStats>();
@@ -26,6 +28,7 @@ function blank(): ProfilerStats {
     lastActual: 0,
     lastBase: 0,
     lastPhase: "",
+    recentPhases: [],
   };
 }
 
@@ -61,6 +64,7 @@ export function LabProfiler({
           lastActual: actualDuration,
           lastBase: baseDuration,
           lastPhase: phase,
+          recentPhases: [...prev.recentPhases, phase].slice(-8),
         });
       }}
     >
