@@ -24,6 +24,28 @@ npm run build
 npm start            # http://localhost:3000  (production)
 ```
 
+### Profiling React
+
+To use the **React DevTools Profiler** or React's tracks in the Performance
+panel, you need a profiling build:
+
+```bash
+npm run build:profile && npm start
+# equivalently:
+npm run build -- --profile      # the extra `--` makes npm forward the flag
+```
+
+A plain `npm run build` compiles React's profiling timing out of the bundle, so
+the Profiler reports "Profiling not supported" and React writes nothing to the
+Performance panel's React tracks.
+
+Two more scripts are available:
+
+```bash
+npm run analyze      # next experimental-analyze --output → .next/diagnostics/analyze
+npm run typecheck    # tsc --noEmit
+```
+
 ## Core Web Vitals
 
 A floating dashboard (bottom-right) reports metrics in real time using Next.js's
@@ -62,6 +84,28 @@ Run `npm run build` and watch the route summary — Next.js labels each route as
 `○ (Static)` or `ƒ (Dynamic)` and shows the ISR revalidate window, confirming
 the strategy each page uses.
 
+## Performance labs
+
+Hands-on stations for profiling. Each lab has its own README, worksheets, and a
+sealed expected-answers file you open only after recording your own numbers.
+
+| Route | Lab | What it exercises |
+| ----- | --- | ----------------- |
+| `/render-lab` | Render Lab | Why components re-render — React DevTools Profiler (see `app/render-lab/README.md`) |
+| `/schedule-lab/keystroke` | Schedule Lab · station 1 | One keystroke four ways: `sync`, `transition`, `deferred`, `deferred-nomemo` |
+| `/schedule-lab/tabs` | Schedule Lab · station 2 | A slow tab switch, `sync` vs `transition` |
+| `/schedule-lab/reveal` | Schedule Lab · station 3 | The Suspense reveal throttle, with optional warm-up |
+| `/schedule-lab/activity` | Schedule Lab · station 4 | `<Activity>` vs unmounting a hidden tab |
+| `/schedule-lab/yield` | Schedule Lab · station 5 | Your own long task: `block`, `yield`, `timeout` |
+| `/load-lab/markdown-client` | Load Lab · station 1 | Markdown rendered in a client component |
+| `/load-lab/markdown-server` | Load Lab · station 2 | The same markdown rendered on the server |
+| `/load-lab/hydration` | Load Lab · station 3 | Hydration cost, `mode=client` vs `mode=server` |
+| `/load-lab/lazy-editor` | Load Lab · station 4 | A lazy client chunk, cold vs warmed on hover |
+
+Profile the labs with `npm run build:profile && npm start`. See
+`app/schedule-lab/README.md` and `app/load-lab/README.md` for the measuring
+protocol and the analyzer procedure.
+
 ## Project structure
 
 ```
@@ -79,13 +123,32 @@ app/
 ├── ssr/page.tsx                # SSR demo
 ├── ssg/page.tsx                # SSG demo
 ├── isr/page.tsx                # ISR demo
+├── products/                   # Incremental SSG (generateStaticParams)
+├── streaming/page.tsx          # Streaming SSR with <Suspense>
 ├── server-component/           # RSC demo (+ LikeButton client island)
-└── vitals-lab/page.tsx         # Interactive LCP / CLS / INP triggers
+├── vitals-lab/page.tsx         # Interactive LCP / CLS / INP triggers
+├── render-lab/                 # Profiler exercise (own README + worksheets)
+├── _lab-kit/                   # Private folder — not a route
+│   ├── burn.ts                 # Deterministic synthetic cost (busy-wait)
+│   ├── seeded.ts               # Seeded PRNG + makeItems()
+│   ├── counters.ts             # Body-execution counters (also window.__lab)
+│   ├── LabProfiler.tsx         # <Profiler> wrapper: commits + durations
+│   └── InteractionHUD.tsx      # Event Timing / LoAF / counters / INP panel
+├── schedule-lab/               # Scheduling stations + worksheets
+│   ├── keystroke/  tabs/  reveal/  activity/  yield/
+│   └── README.md · PREDICTIONS.md · RESULTS.md · EXPECTED.md
+└── load-lab/                   # Load stations + worksheets
+    ├── markdown-client/  markdown-server/  hydration/  lazy-editor/
+    ├── content.ts              # Deterministic ~25–30 KB markdown
+    └── README.md · LOAD.md · EXPECTED.md
+
+instrumentation-client.ts       # Repo root: web-vitals INP attribution
 ```
 
 ## Suggested testing workflow
 
-1. `npm run build && npm start`.
+1. `npm run build:profile && npm start` (use `npm run build` only when you do
+   not need the React Profiler).
 2. Open DevTools → Console (full vitals payloads) and the Lighthouse panel.
 3. Visit each rendering route and reload a few times to see the timestamp
    behaviour described above.
