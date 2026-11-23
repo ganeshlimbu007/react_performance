@@ -858,3 +858,78 @@ button:hover {
   display: block;
   margin-top: 0.5rem;
 }
+
+/* ---------- Paint lab ----------
+   These five rules are the station's subject matter and are written exactly as
+   the brief specifies them; do not restyle them to match the site theme. */
+.pl-row { display:flex; gap:12px; border-bottom:1px solid #ddd; font:14px system-ui; }
+.pl-row span { flex:1; }
+.pl-dense .pl-row span { font-size:12px; line-height:1.1; }
+.pl-cv .pl-row { content-visibility:auto; contain-intrinsic-size:auto 29px; }
+
+/* Supporting chrome for the paint stations (not part of the measurement). */
+.pl-list {
+  background: #fff;
+  color: #111;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+  margin-top: 1rem;
+}
+.pl-wrap {
+  width: 600px;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px;
+  margin-top: 1rem;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+.pl-box {
+  height: 6px;
+  background: var(--accent);
+  margin-bottom: 2px;
+}
+.pl-stage {
+  position: relative;
+  height: 72px;
+  width: 460px;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+.pl-mover {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--accent);
+}
+@keyframes pl-left-anim {
+  from { left: 0; }
+  to   { left: 400px; }
+}
+@keyframes pl-transform-anim {
+  from { transform: translateX(0); }
+  to   { transform: translateX(400px); }
+}
+.pl-anim-left {
+  animation: pl-left-anim 1.5s ease-in-out 2 alternate;
+}
+.pl-anim-transform {
+  animation: pl-transform-anim 1.5s ease-in-out 2 alternate;
+}
+.pl-vlist {
+  background: #fff;
+  color: #111;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+.pl-dark .pl-row { background: #222; color: #eee; border-bottom-color: #444; }
