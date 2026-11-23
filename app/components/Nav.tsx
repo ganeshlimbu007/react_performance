@@ -11,6 +11,8 @@ const LINKS = [
   { href: "/server-component", label: "Server Component" },
   { href: "/vitals-lab", label: "Vitals Lab" },
   { href: "/render-lab", label: "Render Lab" },
+  { href: "/schedule-lab", label: "Schedule Lab" },
+  { href: "/load-lab", label: "Load Lab" },
 ];
 
 export function Nav() {

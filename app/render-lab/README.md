@@ -14,9 +14,14 @@ Always profile a **production build** — `next dev` inflates timings and
 StrictMode double-renders everything:
 
 ```bash
-npm run build && npm start
+npm run build:profile && npm start
 # open http://localhost:3000/render-lab
 ```
+
+A plain `npm run build` compiles React's profiling timing out of the bundle, so
+the DevTools Profiler reports "Profiling not supported" and React writes nothing
+to the Performance panel's React tracks; `next build --profile` gives you
+production code with profiling left in.
 
 ## How to profile
 
