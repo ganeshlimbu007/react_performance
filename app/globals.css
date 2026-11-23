@@ -766,3 +766,18 @@ button:hover {
   font-size: 0.82rem;
   min-height: 240px;
 }
+
+/* The HUD is fixed in the bottom-left. The page container is centred with a
+   960px max width, so on anything narrower than ~1650px the HUD would sit on
+   top of a station's own controls. Reserve room for it instead. */
+@media (min-width: 901px) and (max-width: 1650px) {
+  .lab-inset {
+    padding-left: 360px;
+  }
+}
+@media (max-width: 900px) {
+  .hud {
+    width: 260px;
+    max-height: 45vh;
+  }
+}

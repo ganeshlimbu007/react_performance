@@ -11,7 +11,9 @@ export default function ScheduleLabLayout({
 }) {
   return (
     <>
-      {children}
+      {/* lab-inset reserves room so the fixed HUD never covers the stations'
+          own controls at common laptop widths. */}
+      <div className="lab-inset">{children}</div>
       <InteractionHUD lab="schedule-lab" />
     </>
   );

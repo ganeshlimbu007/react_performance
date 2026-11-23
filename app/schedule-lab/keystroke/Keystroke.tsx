@@ -78,9 +78,15 @@ export function Keystroke({
     recording.current = true;
     queueMicrotask(() => {
       if (recording.current) seq.current.push("microtask");
+    });
+    // Close the sequence on a macrotask, so that for a click — where React
+    // schedules its own microtask after ours — the render and commit that
+    // follow the microtask are still recorded. Recording is switched off
+    // before setSequence, so the re-render it causes is not recorded.
+    setTimeout(() => {
       recording.current = false;
       setSequence(seq.current.join("  →  "));
-    });
+    }, 0);
   }
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {

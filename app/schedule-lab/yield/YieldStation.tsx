@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { burn } from "../../_lab-kit/burn";
 import { makeItems } from "../../_lab-kit/seeded";
 
@@ -29,6 +29,10 @@ export function YieldStation({
   const [progress, setProgress] = useState(0);
   const [busy, setBusy] = useState(false);
   const [scratch, setScratch] = useState("");
+  // Feature detection differs between the server and the browser, so report it
+  // only after mounting rather than hydrating a mismatched string.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   async function build() {
     setBusy(true);
@@ -90,7 +94,11 @@ export function YieldStation({
         <div className="sl-metric">
           <span>scheduler.yield in this browser</span>
           <span className="mono">
-            {hasYield ? "supported" : "not supported — falls back to setTimeout"}
+            {!mounted
+              ? "checking…"
+              : hasYield
+                ? "supported"
+                : "not supported — falls back to setTimeout"}
           </span>
         </div>
         <div className="sl-metric">

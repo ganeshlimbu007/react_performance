@@ -43,6 +43,9 @@ const supports = (type: string) =>
 const r1 = (n: number) => Math.round(n * 10) / 10;
 
 export function InteractionHUD({ lab }: { lab?: string }) {
+  // The HUD reports on browser-only APIs, and its feature detection would
+  // disagree with the server render. Mount it client-side only.
+  const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(true);
   const [interactions, setInteractions] = useState<Interaction[]>([]);
   const [longTasks, setLongTasks] = useState(0);
@@ -54,6 +57,8 @@ export function InteractionHUD({ lab }: { lab?: string }) {
 
   // Largest-duration entry per interactionId.
   const byId = useRef(new Map<number, Interaction>());
+
+  useEffect(() => setMounted(true), []);
 
   /* ---- Event Timing: split every interaction into its three parts ---- */
   useEffect(() => {
@@ -185,6 +190,8 @@ export function InteractionHUD({ lab }: { lab?: string }) {
     setCounters(readCounters());
     setProfiler(readProfiler());
   }
+
+  if (!mounted) return null;
 
   return (
     <aside className={`hud ${open ? "hud-open" : "hud-closed"}`}>

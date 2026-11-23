@@ -5,7 +5,9 @@ import { InteractionHUD } from "../_lab-kit/InteractionHUD";
 export default function LoadLabLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      {children}
+      {/* lab-inset reserves room so the fixed HUD never covers the stations'
+          own controls at common laptop widths. */}
+      <div className="lab-inset">{children}</div>
       <InteractionHUD lab="load-lab" />
     </>
   );
