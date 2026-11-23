@@ -8,7 +8,9 @@
     "build:profile": "next build --profile",
     "start": "next start",
     "analyze": "next experimental-analyze --output",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "compiler:report": "node scripts/compiler-report.mjs",
+    "lint:hooks": "eslint app/shapes-lab app/compiler-lab app/paint-lab || true"
   },
   "dependencies": {
     "marked": "^18.2.1",
