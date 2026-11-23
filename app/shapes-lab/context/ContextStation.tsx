@@ -282,11 +282,18 @@ function Panel() {
 
 function TallyTable() {
   const [, setTick] = useState(0);
+  // The consumers fill the tally during render, so by the time this component
+  // hydrates the numbers already differ from the server's. Render it only
+  // after mounting rather than hydrating a mismatched table.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   useEffect(() => subscribe(() => setTick((t) => t + 1)), []);
   useEffect(() => {
     const t = setInterval(() => setTick((x) => x + 1), 250);
     return () => clearInterval(t);
   }, []);
+
+  if (!mounted) return <div className="sl-log">collecting…</div>;
 
   return (
     <div className="sl-log">
