@@ -11,8 +11,9 @@ const LINKS = [
   { href: "/server-component", label: "Server Component" },
   { href: "/vitals-lab", label: "Vitals Lab" },
   { href: "/render-lab", label: "Render Lab" },
-  { href: "/schedule-lab", label: "Schedule Lab" },
-  { href: "/load-lab", label: "Load Lab" },
+  // Six per-lab links would crowd the nav, so the rest of Week 2 is reached
+  // through its index. "Render Lab" stays, since Part 1 is done first.
+  { href: "/week-2", label: "Week 2" },
 ];
 
 export function Nav() {

@@ -89,8 +89,11 @@ the strategy each page uses.
 Hands-on stations for profiling. Each lab has its own README, worksheets, and a
 sealed expected-answers file you open only after recording your own numbers.
 
+Start at **`/week-2`**, which lists the whole week in order.
+
 | Route | Lab | What it exercises |
 | ----- | --- | ----------------- |
+| `/week-2` | Index | The week in order, with what each lab is for |
 | `/render-lab` | Render Lab | Why components re-render — React DevTools Profiler (see `app/render-lab/README.md`) |
 | `/schedule-lab/keystroke` | Schedule Lab · station 1 | One keystroke four ways: `sync`, `transition`, `deferred`, `deferred-nomemo` |
 | `/schedule-lab/tabs` | Schedule Lab · station 2 | A slow tab switch, `sync` vs `transition` |
@@ -101,10 +104,37 @@ sealed expected-answers file you open only after recording your own numbers.
 | `/load-lab/markdown-server` | Load Lab · station 2 | The same markdown rendered on the server |
 | `/load-lab/hydration` | Load Lab · station 3 | Hydration cost, `mode=client` vs `mode=server` |
 | `/load-lab/lazy-editor` | Load Lab · station 4 | A lazy client chunk, cold vs warmed on hover |
+| `/shapes-lab/cascade` | Shapes Lab · S1 | Deriving in render vs `useEffect` vs `useLayoutEffect`, with a frame logger |
+| `/shapes-lab/remount` | Shapes Lab · S2 | A row component declared at module scope vs inside the parent, compiled or not |
+| `/shapes-lab/lazy-in-render` | Shapes Lab · S3 | `lazy()` called in the parent body vs at module scope |
+| `/shapes-lab/keys` | Shapes Lab · S4 | Prepending a row to 1,000 memo rows, keyed by index vs id |
+| `/shapes-lab/context` | Shapes Lab · S5 | Inline vs memoised vs split context, vs an external store with selectors |
+| `/shapes-lab/state-bailouts` | Shapes Lab · S6 | `setState` to the same value, and a reducer noop |
+| `/compiler-lab/parent` | Compiler Lab · C1 | The same component with and without `'use memo'` |
+| `/compiler-lab/skips` | Compiler Lab · C2 | Annotated components that silently fail to compile |
+| `/paint-lab/density` | Paint Lab · P1 | A density change on the container vs on every row, ± `content-visibility` |
+| `/paint-lab/thrash` | Paint Lab · P2 | Layout thrashing: interleaved reads, batched reads, or per-component |
+| `/paint-lab/virtual` | Paint Lab · P3 | 5,000 rows in full vs through `react-window` |
+| `/paint-lab/animate` | Paint Lab · P4 | Animating via state, `left`, or `transform`, with a busy main thread |
 
-Profile the labs with `npm run build:profile && npm start`. See
-`app/schedule-lab/README.md` and `app/load-lab/README.md` for the measuring
-protocol and the analyzer procedure.
+Profile the labs with `npm run build:profile && npm start`. The measuring
+protocol lives in each lab's README (`app/schedule-lab/`, `app/load-lab/`,
+`app/shapes-lab/`, `app/compiler-lab/`, `app/paint-lab/`), the Part 3
+worksheets in `docs/week-2/part-3/`, and the week's write-up template in
+`PERFORMANCE.md`.
+
+### React Compiler
+
+`next.config.ts` enables React Compiler 1.0 in **annotation mode only**
+(`reactCompiler: { compilationMode: 'annotation' }`), so a function is compiled
+only when its body starts with the `'use memo'` directive. Nothing is compiled
+by default and `app/render-lab/` is entirely unaffected.
+
+```bash
+npm run compiler:report            # what compiled, what failed, and why
+npm run compiler:report -- --emit app/compiler-lab/parent/ParentCompiled.tsx
+npm run lint:hooks                 # react-hooks rules over the Part 3 labs
+```
 
 ## Project structure
 
@@ -137,12 +167,28 @@ app/
 ├── schedule-lab/               # Scheduling stations + worksheets
 │   ├── keystroke/  tabs/  reveal/  activity/  yield/
 │   └── README.md · PREDICTIONS.md · RESULTS.md · EXPECTED.md
-└── load-lab/                   # Load stations + worksheets
-    ├── markdown-client/  markdown-server/  hydration/  lazy-editor/
-    ├── content.ts              # Deterministic ~25–30 KB markdown
-    └── README.md · LOAD.md · EXPECTED.md
+├── load-lab/                   # Load stations + worksheets
+│   ├── markdown-client/  markdown-server/  hydration/  lazy-editor/
+│   ├── content.ts              # Deterministic ~25–30 KB markdown
+│   └── README.md · LOAD.md · EXPECTED.md
+├── shapes-lab/                 # Shapes that multiply renders
+│   ├── cascade/  remount/  lazy-in-render/  keys/  context/  state-bailouts/
+│   ├── Readout.tsx             # Polls counters/Profiler as a sibling
+│   └── README.md
+├── compiler-lab/               # React Compiler, annotation mode
+│   ├── parent/  skips/
+│   └── README.md
+├── paint-lab/                  # Style, layout and paint
+│   ├── density/  thrash/  virtual/  animate/
+│   ├── data.ts                 # 5,000 seeded rows
+│   └── README.md
+└── week-2/page.tsx             # The week in order
 
+scripts/compiler-report.mjs     # npm run compiler:report
+eslint.config.mjs               # npm run lint:hooks (ignores render-lab)
 instrumentation-client.ts       # Repo root: web-vitals INP attribution
+docs/week-2/part-3/             # PREDICTIONS.md · RESULTS.md · EXPECTED.md
+PERFORMANCE.md                  # The week's write-up template
 ```
 
 ## Suggested testing workflow

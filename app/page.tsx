@@ -56,16 +56,10 @@ const TECHNIQUES = [
     badge: "React Profiler",
   },
   {
-    href: "/schedule-lab",
-    title: "Schedule Lab",
-    desc: "Five stations on when work happens relative to the frame: transitions, deferred values, the Suspense reveal throttle, <Activity>, and yielding.",
-    badge: "scheduling · 5 stations",
-  },
-  {
-    href: "/load-lab",
-    title: "Load Lab",
-    desc: "Four stations on what must arrive before anything works: client JS per route, the server boundary, code splitting, and hydration.",
-    badge: "load · 4 stations",
+    href: "/week-2",
+    title: "Week 2 — React performance",
+    desc: "The whole week in order: scheduling and load, then the shapes that multiply renders, the React Compiler, and the browser's half of the work.",
+    badge: "5 labs · 19 stations",
   },
 ];
 

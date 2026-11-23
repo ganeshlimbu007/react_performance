@@ -933,3 +933,23 @@ button:hover {
   margin-top: 1rem;
 }
 .pl-dark .pl-row { background: #222; color: #eee; border-bottom-color: #444; }
+
+/* ---------- Week 2 index ---------- */
+.w2-part {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin: 1rem 0;
+}
+.w2-part h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+.w2-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+.w2-list li {
+  margin-bottom: 0.4rem;
+}
