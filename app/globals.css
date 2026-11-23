@@ -514,3 +514,255 @@ button:hover {
   margin: 0;
   font-size: 0.9rem;
 }
+
+/* ---------- Lab kit: Interaction HUD (bottom-left, clear of the
+   Web Vitals dashboard in the bottom-right) ---------- */
+.hud {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  width: 330px;
+  max-height: 70vh;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.hud-toggle {
+  width: 100%;
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 0;
+  text-align: left;
+  font-size: 0.85rem;
+  flex: 0 0 auto;
+}
+.hud-body {
+  padding: 0.6rem 0.9rem 0.9rem;
+  overflow: auto;
+}
+.hud-sec {
+  border-top: 1px solid var(--border);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+.hud-sec:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+.hud-sec h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.hud-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  padding: 0.1rem 0;
+}
+.hud-k {
+  color: var(--muted);
+}
+.hud-v {
+  text-align: right;
+  word-break: break-all;
+}
+.hud-worst .hud-v {
+  color: var(--warn);
+}
+.hud-note {
+  color: var(--muted);
+  font-size: 0.7rem;
+  margin: 0.3rem 0 0;
+  line-height: 1.35;
+}
+.hud-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+.hud-actions button {
+  flex: 1;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.8rem;
+}
+.hud-fallback {
+  width: 100%;
+  margin-top: 0.5rem;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.7rem;
+}
+
+/* ---------- Schedule lab ---------- */
+.sl-head {
+  margin-bottom: 1rem;
+}
+.sl-setup {
+  background: var(--panel-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  margin: 0.8rem 0;
+}
+.sl-switch {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.8rem 0;
+}
+.sl-switch a {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.sl-switch a[aria-current="page"] {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--panel-2);
+}
+.sl-controls {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.sl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.sl-field label {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.sl-field input {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  min-width: 220px;
+}
+.sl-pending {
+  color: var(--warn);
+  font-size: 0.8rem;
+}
+.sl-dim {
+  opacity: 0.55;
+}
+.sl-rows {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 55vh;
+  overflow-y: auto;
+}
+.sl-row {
+  padding: 0.3rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+}
+.sl-tablist {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.sl-tablist button[aria-selected="true"] {
+  outline: 2px solid var(--accent);
+}
+.sl-log {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+  margin: 0.8rem 0;
+}
+.sl-metric {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  padding: 0.15rem 0;
+}
+.sl-metric span:first-child {
+  color: var(--muted);
+}
+
+/* ---------- Load lab ---------- */
+.ll-article {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.ll-article h1,
+.ll-article h2,
+.ll-article h3 {
+  margin: 1rem 0 0.4rem;
+}
+.ll-article pre {
+  background: var(--panel-2);
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.8rem;
+}
+.ll-article code {
+  font-size: 0.85em;
+}
+.ll-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+  max-height: 55vh;
+  overflow-y: auto;
+}
+.ll-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.78rem;
+}
+.ll-editor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.ll-editor textarea {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.7rem;
+  font-family: ui-monospace, monospace;
+  font-size: 0.82rem;
+  min-height: 240px;
+}
