@@ -1,0 +1,4 @@
+{
+  "//": "Scopes the labs subtree to ESM so the specs can use import.meta (C4.12 loads the repo's own react-dom through createRequire(import.meta.url)). The app's own package.json stays CommonJS, which is what Next expects.",
+  "type": "module"
+}

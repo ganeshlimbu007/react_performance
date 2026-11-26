@@ -189,7 +189,60 @@ eslint.config.mjs               # npm run lint:hooks (ignores render-lab)
 instrumentation-client.ts       # Repo root: web-vitals INP attribution
 docs/week-2/part-3/             # PREDICTIONS.md · RESULTS.md · EXPECTED.md
 PERFORMANCE.md                  # The week's write-up template
+
+labs/                           # Weeks 1–2 claim labs (Playwright)
+├── _kit/lab.ts                 # Shared harness: boot, counters, claims()
+├── playwright.config.ts
+├── week01/p01-the-same-element/ … p03-four-causes/
+└── week02/p04-one-click-one-commit/ … p07-interruptible-work/
+LABS-WEEK01-02.md               # The source document for labs/
+extract-labs.mjs                # Rewrites labs/ from that document
 ```
+
+## Claim labs (weeks 1–2)
+
+`labs/` holds **52 executable claims** — seven labs, one per chapter page, each
+asserting what the browser actually does against a sentence people repeat. Tests
+are tagged `[holds]`, `[partly]` or `[wrong]`; thirteen of the sentences are
+measurably wrong, and the ledger is in `LABS-WEEK01-02.md`.
+
+```bash
+npm i -D @playwright/test@1.65.1     # once
+npx playwright install --with-deps chromium
+npm run labs                          # the whole suite
+npm run labs -- labs/week02/p07-interruptible-work   # one lab
+```
+
+The labs count **renders, commits, mounts, DOM writes and frames** — not
+milliseconds — so the same numbers hold on a laptop and on an old phone. They
+load React **18.3.1's UMD profiling build**, because UMD was dropped in React 19
+and a `setContent` harness has no bundler; everything measured is behaviour React
+19 kept, with one deliberate exception (`C4.12`) that imports this repo's own
+installed `react-dom` and asserts the legacy root is gone.
+
+> A failure after a React upgrade means **the sentence has become wrong, not the
+> test**. Retag the claim and record what the browser gave. Never edit an
+> expectation to make a test pass.
+
+Two environment variables cover constrained machines — both are read by
+`labs/playwright.config.ts` and `labs/_kit/lab.ts`:
+
+```bash
+# no network: vendor the React 18 UMD builds once
+mkdir -p labs/.vendor && cd labs/.vendor
+npm pack react@18.3.1 react-dom@18.3.1
+for t in *.tgz; do d="${t%.tgz}"; mkdir -p "x-$d"; tar xzf "$t" -C "x-$d"; done
+cp x-*/package/umd/*.min.js . && rm -rf x-* *.tgz && cd ../..
+
+LAB_VENDOR=labs/.vendor \
+LAB_CHROME=/path/to/chrome \
+  npm run labs
+```
+
+`labs/` is generated from `LABS-WEEK01-02.md`; `node extract-labs.mjs` rewrites
+it from that document, so edit the document and re-extract rather than editing
+`labs/` by hand. Nothing in these labs reads, writes or runs against
+`app/render-lab/` — that diagnosis stays yours to do first.
 
 ## Suggested testing workflow
 

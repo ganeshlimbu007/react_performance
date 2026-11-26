@@ -10,7 +10,8 @@
     "analyze": "next experimental-analyze --output",
     "typecheck": "tsc --noEmit",
     "compiler:report": "node scripts/compiler-report.mjs",
-    "lint:hooks": "eslint app/shapes-lab app/compiler-lab app/paint-lab || true"
+    "lint:hooks": "eslint app/shapes-lab app/compiler-lab app/paint-lab || true",
+    "labs": "playwright test -c labs/playwright.config.ts"
   },
   "dependencies": {
     "marked": "^18.2.1",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@babel/core": "^7.29.13",
     "@babel/plugin-syntax-typescript": "^7.29.7",
+    "@playwright/test": "^1.65.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

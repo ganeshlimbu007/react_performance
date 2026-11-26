@@ -42,3 +42,10 @@ next-env.d.ts
 
 # profiling / analyzer output
 /perf/
+
+# labs
+/labs/.vendor/
+/labs/test-results/
+# Playwright resolves outputDir against the cwd it is run from, so the
+# results folder can land at the repo root rather than under labs/.
+test-results/
